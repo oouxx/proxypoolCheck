@@ -13,16 +13,16 @@ var configFilePath = "config.yaml"
 
 // ConfigOptions is a struct that represents config files
 type ConfigOptions struct {
-	ServerUrl  []string `json:"server_url" yaml:"server_url"`
-	Request	   string `json:"request" yaml:"request"`
-	Domain     string `json:"domain" yaml:"domain"`
-	Port       string `json:"port" yaml:"port"`
-	HealthCheckTimeout int `json:"healthcheck_timeout" yaml:"healthcheck_timeout"`
-	SpeedTest  bool `json:"speedtest" yaml:"speedtest"`
-	Connection int 	 `json:"connection" yaml:"connection"`
-	SpeedTimeout    int   `json:"speed_timeout" yaml:"speed_timeout"`
-	ShowRemoteSpeed bool `json:"show_remote_speed" yaml:"show_remote_speed"`
-	CronInterval uint64 `json:"cron_interval" yaml:"cron_interval"`
+	ServerUrl          []string `json:"server_url" yaml:"server_url"`
+	Request            string   `json:"request" yaml:"request"`
+	Domain             string   `json:"domain" yaml:"domain"`
+	Port               string   `json:"port" yaml:"port"`
+	HealthCheckTimeout int      `json:"healthcheck_timeout" yaml:"healthcheck_timeout"`
+	SpeedTest          bool     `json:"speedtest" yaml:"speedtest"`
+	Connection         int      `json:"connection" yaml:"connection"`
+	SpeedTimeout       int      `json:"speed_timeout" yaml:"speed_timeout"`
+	ShowRemoteSpeed    bool     `json:"show_remote_speed" yaml:"show_remote_speed"`
+	CronInterval       uint64   `json:"cron_interval" yaml:"cron_interval"`
 }
 
 var Config ConfigOptions
@@ -44,27 +44,26 @@ func Parse(path string) error {
 		return err
 	}
 	// set default
-	if Config.ServerUrl == nil{
+	if Config.ServerUrl == nil {
 		return errors.New("config error: no server url")
 	}
-	if Config.Domain == ""{
+	if Config.Domain == "" {
 		Config.Domain = "127.0.0.1"
 	}
-	if Config.Port == ""{
+	if Config.Port == "" {
 		Config.Port = "80"
 	}
-	if Config.Request == ""{
+	if Config.Request == "" {
 		Config.Request = "http"
 	}
-	if Config.Connection == 0{
+	if Config.Connection == 0 {
 		Config.Connection = 5
 	}
-	if Config.CronInterval == 0{
+	if Config.CronInterval == 0 {
 		Config.Connection = 15
 	}
 	return nil
 }
-
 
 // 从本地文件或者http链接读取配置文件内容
 func ReadFile(path string) ([]byte, error) {
